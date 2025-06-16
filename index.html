@@ -61,6 +61,12 @@
       display: none;
     }
 
+    .success-message {
+      color: green;
+      margin-top: 10px;
+      display: none;
+    }
+
     button {
       margin-top: 30px;
       padding: 10px 20px;
@@ -120,6 +126,7 @@
       <input type="date" id="dob" name="dob" required aria-label="Date of Birth" data-question="Date of Birth">
 
       <div class="error-message" id="errorMessage">Please fill out all fields correctly.</div>
+      <div class="success-message" id="successMessage">Form submitted successfully!</div>
 
       <button type="submit" aria-label="Submit form" data-action="submit">Submit</button>
     </form>
@@ -128,13 +135,22 @@
   <script>
     const form = document.getElementById('studentForm');
     const errorMessage = document.getElementById('errorMessage');
+    const successMessage = document.getElementById('successMessage');
 
     form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
       if (!form.checkValidity()) {
-        e.preventDefault();
         errorMessage.style.display = 'block';
+        successMessage.style.display = 'none';
       } else {
         errorMessage.style.display = 'none';
+        successMessage.style.display = 'block';
+
+        // Optional: Reset form after delay
+        setTimeout(() => {
+          form.reset();
+        }, 1500);
       }
     });
   </script>
