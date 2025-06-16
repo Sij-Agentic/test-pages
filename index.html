@@ -39,6 +39,16 @@
       border: 1px solid #ccc;
     }
 
+    fieldset {
+      border: none;
+      margin-top: 20px;
+    }
+
+    legend {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
     .radio-group {
       display: flex;
       gap: 20px;
@@ -73,37 +83,60 @@
     <form id="studentForm">
       <label for="courseName">Course he/she is taking?</label>
       <small>Enter course name</small>
-      <input type="text" id="courseName" name="courseName" required />
+      <input type="text" id="courseName" name="courseName" required placeholder="Enter course name" aria-label="Course he or she is taking" data-question="Course he/she is taking?">
 
       <label for="courseOption">Course taken</label>
       <small>Choose course option</small>
-      <select id="courseOption" name="courseOption" required>
+      <select id="courseOption" name="courseOption" required aria-label="Select course taken" data-question="Course taken">
         <option value="">-- Select --</option>
         <option value="EAG">EAG</option>
         <option value="ERA">ERA</option>
         <option value="EPAi">EPAi</option>
       </select>
 
-      <label>Married?</label>
-      <small>Marital status</small>
-      <div class="radio-group">
-        <label><input type="radio" name="married" value="Yes" required /> Yes</label>
-        <label><input type="radio" name="married" value="No" required /> No</label>
-      </div>
+      <fieldset>
+        <legend>Married?</legend>
+        <small>Marital status</small>
+        <div class="radio-group">
+          <label for="marriedYes">
+            <input type="radio" id="marriedYes" name="married" value="Yes" required aria-label="Married Yes" data-question="Married?"> Yes
+          </label>
+          <label for="marriedNo">
+            <input type="radio" id="marriedNo" name="married" value="No" required aria-label="Married No" data-question="Married?"> No
+          </label>
+        </div>
+      </fieldset>
 
       <label for="masterName">Master's Name</label>
       <small>Provide master's name</small>
-      <input type="text" id="masterName" name="masterName" required />
+      <input type="text" id="masterName" name="masterName" required placeholder="Enter master's name" aria-label="Master's Name" data-question="Master's Name">
 
       <label for="email">Email Address</label>
       <small>Enter email address</small>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="email" required placeholder="Enter email address" aria-label="Email Address" data-question="Email Address">
 
       <label for="dob">Date of Birth</label>
       <small>Enter Date of Birth</small>
-      <input type="date" id="dob" name="dob" required />
+      <input type="date" id="dob" name="dob" required aria-label="Date of Birth" data-question="Date of Birth">
 
       <div class="error-message" id="errorMessage">Please fill out all fields correctly.</div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" aria-label="Submit form" data-action="submit">Submit</button>
     </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('studentForm');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', function (e) {
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        errorMessage.style.display = 'block';
+      } else {
+        errorMessage.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
