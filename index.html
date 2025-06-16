@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Course Registration Form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Info Form</title>
   <style>
     body {
       font-family: sans-serif;
       margin: 40px;
       background-color: #f7f7f7;
     }
+
     .form-container {
       background: white;
       padding: 30px;
@@ -18,14 +19,17 @@
       margin: auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     label {
       font-weight: bold;
       display: block;
       margin-top: 20px;
     }
+
     small {
       color: #555;
     }
+
     input, select {
       width: 100%;
       padding: 10px;
@@ -34,11 +38,19 @@
       border-radius: 4px;
       border: 1px solid #ccc;
     }
+
     .radio-group {
       display: flex;
       gap: 20px;
       margin-top: 10px;
     }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
+
     button {
       margin-top: 30px;
       padding: 10px 20px;
@@ -49,6 +61,7 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #0059c1;
     }
@@ -57,15 +70,14 @@
 <body>
   <div class="form-container">
     <h2>Student Information Form</h2>
-
-    <form>
+    <form id="studentForm">
       <label for="courseName">Course he/she is taking?</label>
       <small>Enter course name</small>
-      <input type="text" id="courseName" name="courseName" />
+      <input type="text" id="courseName" name="courseName" required />
 
       <label for="courseOption">Course taken</label>
       <small>Choose course option</small>
-      <select id="courseOption" name="courseOption">
+      <select id="courseOption" name="courseOption" required>
         <option value="">-- Select --</option>
         <option value="EAG">EAG</option>
         <option value="ERA">ERA</option>
@@ -75,24 +87,23 @@
       <label>Married?</label>
       <small>Marital status</small>
       <div class="radio-group">
-        <label><input type="radio" name="married" value="Yes" /> Yes</label>
-        <label><input type="radio" name="married" value="No" /> No</label>
+        <label><input type="radio" name="married" value="Yes" required /> Yes</label>
+        <label><input type="radio" name="married" value="No" required /> No</label>
       </div>
 
       <label for="masterName">Master's Name</label>
       <small>Provide master's name</small>
-      <input type="text" id="masterName" name="masterName" />
+      <input type="text" id="masterName" name="masterName" required />
 
       <label for="email">Email Address</label>
       <small>Enter email address</small>
-      <input type="email" id="email" name="email" />
+      <input type="email" id="email" name="email" required />
 
       <label for="dob">Date of Birth</label>
       <small>Enter Date of Birth</small>
-      <input type="date" id="dob" name="dob" />
+      <input type="date" id="dob" name="dob" required />
+
+      <div class="error-message" id="errorMessage">Please fill out all fields correctly.</div>
 
       <button type="submit">Submit</button>
     </form>
-  </div>
-</body>
-</html>
